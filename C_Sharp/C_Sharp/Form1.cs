@@ -14,5 +14,11 @@ namespace C_Sharp
             var frmDel = new frmDelegate();
             frmDel.ShowDialog();
         }
+
+        private void btnInBooks_Click(object sender, EventArgs e)
+        {
+            var frmInBooks= new frmInMemoryBooks();
+            frmInBooks.ShowDialog();
+        }
     }
 }

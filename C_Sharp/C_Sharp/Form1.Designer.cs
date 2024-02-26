@@ -30,6 +30,7 @@
         {
             label1 = new Label();
             btnDelegate = new Button();
+            btnInBooks = new Button();
             SuspendLayout();
             // 
             // label1
@@ -52,11 +53,22 @@
             btnDelegate.UseVisualStyleBackColor = true;
             btnDelegate.Click += btnDelegate_Click;
             // 
+            // btnInBooks
+            // 
+            btnInBooks.Location = new Point(291, 135);
+            btnInBooks.Name = "btnInBooks";
+            btnInBooks.Size = new Size(94, 29);
+            btnInBooks.TabIndex = 2;
+            btnInBooks.Text = "InMemory books";
+            btnInBooks.UseVisualStyleBackColor = true;
+            btnInBooks.Click += btnInBooks_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnInBooks);
             Controls.Add(btnDelegate);
             Controls.Add(label1);
             Name = "Form1";
@@ -69,5 +81,6 @@
 
         private Label label1;
         private Button btnDelegate;
+        private Button btnInBooks;
     }
 }
