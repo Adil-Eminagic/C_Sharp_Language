@@ -1,24 +1,18 @@
 ﻿using InMemoryDB;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace C_Sharp.Forms
 {
     public partial class frmNewInBook : Form
     {
         private InMemoryDataBase _data;
-        public frmNewInBook(InMemoryDataBase dataBase)
+        private frmInMemoryBooks _bookForm;
+        public frmNewInBook(InMemoryDataBase dataBase, frmInMemoryBooks bookForm)
         {
             InitializeComponent();
             _data = dataBase;
             InitializeAuthors();
+            _bookForm = bookForm;
         }
 
         private void InitializeAuthors()
@@ -33,24 +27,35 @@ namespace C_Sharp.Forms
         {
             if (ValidateField())
             {
-                string author= cmbAuthor.SelectedItem.ToString();
+
+                int authorindex = int.Parse(cmbAuthor.Text.Substring(0,1));
                 _data.Books.Add(new InMemoryDB.Entities.Book()
                 {
                     Id = _data.Books.Count + 1,
                     Title = txtTitle.Text,
                     PublishingYear = int.Parse(txtPubYear.Text),
-                    Author = _data.Authors[author[0]]
+                    Author = _data.Authors[authorindex-1]
                 });
+                MessageBox.Show("Successfully added book.");
+                this.Close();
+                _bookForm.Close();
+                var frmBook= new frmInMemoryBooks();
+                frmBook.Show();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+
             }
 
-               
+
         }
 
         private bool ValidateField()
         {
             if (cmbAuthor.SelectedItem == null) return false;
             if (string.IsNullOrWhiteSpace(txtTitle.Text)) return false;
-            if (string.IsNullOrWhiteSpace(txtTitle.Text) || int.TryParse(txtTitle.Text, out int num) == false) return false;
+            if (string.IsNullOrWhiteSpace(txtPubYear.Text) || int.TryParse(txtPubYear.Text, out int num) == false) return false;
 
             return true;
         }

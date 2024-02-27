@@ -20,8 +20,8 @@ namespace InMemoryDB
             Books.Add(new Book() { Id = 1, Title = "Hamlet", PublishingYear = 1590, Author = Authors[0] });
             Books.Add(new Book() { Id = 2, Title = "Romeo and Juliet", PublishingYear = 1585, Author = Authors[0] });
 
-
-
         }
     }
+
+   
 }
